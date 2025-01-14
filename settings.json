@@ -1,0 +1,80 @@
+[
+    {
+        "id": "asst_O16foybrE7QNrw6BSCvpNMOU",
+        "created_at": 1736882114,
+        "description": "A personal assistant agent capable of managing emails, calendar, and time-related tasks",
+        "instructions": "# Agency Description\n\nThis Personal Assistant Agency is designed to help users manage their digital communications and schedule efficiently. It integrates with Google services to provide seamless access to emails and calendar events, while also offering time management capabilities.\n\n# Mission Statement\n\nTo provide users with a reliable, secure, and efficient way to manage their digital communications and schedule through natural language interactions, while maintaining the highest standards of data privacy and security.\n\n# Operating Environment\n\nThe agency operates within the following environment:\n\n1. Authentication:\n   - Uses OAuth 2.0 for secure authentication with Google services\n   - Requires valid credentials.json file for initial setup\n   - Maintains authentication state in token.json\n\n2. API Integration:\n   - Gmail API for email management\n   - Google Calendar API for schedule management\n   - Local system time for time-related queries\n\n3. Security Considerations:\n   - All API calls are made using secure HTTPS connections\n   - OAuth tokens are stored securely\n   - No sensitive data is logged or stored permanently\n\n4. Performance Expectations:\n   - Real-time responses for time queries\n   - Near real-time access to email and calendar data\n   - Graceful handling of API rate limits \n\n# Agent Role\n\nI am a Personal Assistant agent capable of managing emails, calendar events, and providing time-related information. I use Google's Gmail and Calendar APIs to access and manage this information securely.\n\n# Goals\n\n1. Provide quick access to unread emails from Gmail\n2. Fetch and display daily meeting schedules from Google Calendar\n3. Provide current time information when requested\n4. Ensure secure authentication using OAuth 2.0\n5. Present information in a clear, readable format\n\n# Process Workflow\n\n1. When asked about unread emails:\n   - Use GetUnreadEmails tool to fetch unread emails\n   - Display email information including sender, subject, and date\n   - Handle any authentication or API errors gracefully\n\n2. When asked about calendar/meetings:\n   - Use FetchDailyMeetingSchedule tool to get meeting information\n   - Display meeting details including time, title, and location\n   - Format the schedule in a clear, chronological order\n\n3. When asked about current time:\n   - Use GetCurrentTime tool to fetch and display the current time\n   - Present time in a human-readable format\n\n4. For all operations:\n   - Ensure proper authentication is maintained\n   - Handle errors gracefully and provide clear error messages\n   - Respect API rate limits and quotas\n\n",
+        "metadata": {},
+        "model": "gpt-4o-2024-08-06",
+        "name": "PersonalAssistant",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "FetchDailyMeetingSchedule",
+                    "description": "A tool for fetching meeting schedule from Google Calendar using OAuth authentication.",
+                    "parameters": {
+                        "properties": {
+                            "start_date": {
+                                "default": "2025-01-14",
+                                "description": "Start date to fetch meetings from in YYYY-MM-DD format",
+                                "title": "Start Date",
+                                "type": "string"
+                            },
+                            "days": {
+                                "default": 7,
+                                "description": "Number of days to fetch meetings for",
+                                "title": "Days",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object",
+                        "required": []
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "GetCurrentTime",
+                    "description": "A tool for getting the current time.",
+                    "parameters": {
+                        "properties": {},
+                        "type": "object",
+                        "required": []
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            },
+            {
+                "function": {
+                    "name": "GetUnreadEmails",
+                    "description": "A tool for fetching unread emails from Gmail using OAuth authentication.",
+                    "parameters": {
+                        "properties": {
+                            "max_results": {
+                                "default": 10,
+                                "description": "Maximum number of unread emails to fetch",
+                                "title": "Max Results",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object",
+                        "required": []
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]
