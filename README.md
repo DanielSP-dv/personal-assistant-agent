@@ -64,7 +64,3 @@ The agent uses OAuth 2.0 for Google services authentication. On first run, it wi
 - All API keys and tokens are stored securely
 - OAuth 2.0 is used for Google services
 - No sensitive data is logged or stored permanently
-
-## License
-
-MIT License 
